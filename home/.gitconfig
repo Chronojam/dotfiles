@@ -1,0 +1,6 @@
+[user]
+    email = calliope@chronojam.co.uk
+    name  = Calliope Gardner
+    signingkey = 9F81D15BF825E9CC
+[commit]
+    gpgsign = true

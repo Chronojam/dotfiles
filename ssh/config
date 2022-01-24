@@ -1,0 +1,4 @@
+Host *github.com:
+    IdentityFile /home/calliope/.ssh/github.com
+Host *gitlab.com:
+    IdentityFile /home/calliope/.ssh/gitlab.com
