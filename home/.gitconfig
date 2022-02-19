@@ -3,4 +3,12 @@
     name  = Calliope Gardner
     signingkey = 9F81D15BF825E9CC
 [commit]
+    gpsign  = true
     gpgsign = true
+[gpg]
+	program = gpg
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

@@ -20,7 +20,7 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin:$HOME/local/go/bin:$PATH"
 fi
 
 # Source everything.
@@ -28,7 +28,16 @@ for DOTFILE in "$DOTFILES_DIR"/bash/.*; do
     [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
-
 eval $(ssh-agent -s)
 ssh-add $HOME/.ssh/github.com
 ssh-add $HOME/.ssh/gitlab.com
+
+# GPG
+export GPG_TTY=$(tty)
+
+# Golang
+export GOPATH="/home/calliope"
+
+# Android
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
