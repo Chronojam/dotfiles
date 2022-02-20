@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-# Link everything.
-for f in $(find $HOME/.dotfiles/home -type f); do
+# Link dotfiles.
+for f in $(find $HOME/.dotfiles/home -maxdepth 1 -type f); do
       FNAME=$(echo $f | awk -F/ '{print $NF}')
       ln -s -f $f $HOME/$FNAME
+done
+
+# Link all directories seperately.
+for d in $(find $HOME/.dotfiles/home -maxdepth 1 -type d); do
+      FNAME=$(echo $d | awk -F/ '{print $NF}')
+      ln -s -f $d $HOME/$FNAME
 done
 
 for f in $(find $HOME/.dotfiles/nixos -type f); do
@@ -26,7 +32,7 @@ gpg --import $HOME/.gpg/secret.key
 gpg --edit-key 9F81D15BF825E9CC
 
 # Fetch all our passwords and stuff.
-git clone git@github.com:chronojam/password-store $HOME/.password-store
+# git clone git@github.com:chronojam/password-store $HOME/.password-store
 
 # Source .bash_profile, which sources everything else
 . $HOME/.bash_profile

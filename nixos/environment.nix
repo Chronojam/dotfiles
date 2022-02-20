@@ -22,6 +22,7 @@
       vscodium
       xclip
       xorg.xmodmap
+      bazel
       haskellPackages.xmobar
 
       # Other important bits.
