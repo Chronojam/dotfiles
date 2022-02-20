@@ -36,8 +36,8 @@ ssh-add $HOME/.ssh/gitlab.com
 export GPG_TTY=$(tty)
 
 # Golang
-export GOPATH="/home/calliope"
+#export GOPATH="/home/calliope"
 
 # Android
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+#export ANDROID_HOME=$HOME/Android/Sdk
+#export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
