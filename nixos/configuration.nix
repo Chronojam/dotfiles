@@ -60,7 +60,7 @@
     enable = true;
 
     displayManager = {
-      defaultSession = "none+xmonad";
+      defaultSession = "xfce+xmonad";
       lightdm.enable = false;
       sddm.enable = true;
     };
@@ -74,10 +74,37 @@
       xterm = {
         enable = false;
       };
+
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
     };
   };
 
-  services.printing.enable = true;
+# Uncomment for printing
+
+#  services.printing.enable = false;
+#  services.printing.browsing = true;
+#  services.printing.extraConf = ''
+#    DefaultEncryption Never
+#    LogLevel debug
+#  '';
+#  services.printing.browsedConf = ''
+#    BrowseDNSSDSubTypes _cups,_print
+#    BrowseLocalProtocols all
+#    BrowseRemoteProtocols all
+#    CreateIPPPrinterQueues All
+#
+#    BrowseProtocols all
+#  '';
+#  services.printing.drivers = with pkgs;[ cnijfilter2 canon-cups-ufr2 cups-filters ];
+
+#  services.avahi = {
+#    enable = true;
+#    nssmdns = true;
+#  };
 
   location.provider = "manual";
   location.latitude = 51.4545;
@@ -85,8 +112,9 @@
   services.redshift = {
     enable = true;
 
-    temperature.day = 6500;
-    temperature.night = 2700;
+    temperature.day = 3500;
+    # 2700
+    temperature.night = 1700;
   };
 
   # Configure keymap in X11

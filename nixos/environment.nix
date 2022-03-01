@@ -22,14 +22,20 @@
       vscodium
       xclip
       xorg.xmodmap
-      bazel
+      dig
+      kubectl
       haskellPackages.xmobar
 
       # Other important bits.
+      libreoffice
       discord
       dunst
       zoom-us
       spotify
+      audacity
+            
+      # :thinking_face:
+      minecraft
     ];
   };
 }

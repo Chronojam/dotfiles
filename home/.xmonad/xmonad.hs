@@ -9,7 +9,7 @@ import XMonad.Hooks.ManageDocks
 import System.IO
 
 main = do
-    xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "xmobar /home/calliope/.xmobbarc"
     xmonad $ defaultConfig
       { modMask = mod4Mask
       , manageHook = manageDocks <+> manageHook defaultConfig
@@ -21,6 +21,6 @@ main = do
           }
       }
       `additionalKeysP`
-      [ ("M-S-=", unGrab *> spawn "scrot -s")
+      [ ("M-s", unGrab *> spawn "scrot -s")
       , ("M-r", spawn "dmenu_run")
       ]
