@@ -68,6 +68,11 @@
       xmonad = {
         enable = true;
         enableContribAndExtras = true;
+        extraPackages = haskellPackages : [
+          haskellPackages.xmonad-contrib
+          haskellPackages.xmonad-extras
+          haskellPackages.xmonad
+        ];
       };
     };
     desktopManager = {
@@ -105,6 +110,21 @@
 #    enable = true;
 #    nssmdns = true;
 #  };
+#
+  services.picom = {
+    enable = true;
+    activeOpacity = 0.8;
+    inactiveOpacity = 0.7;
+    backend = "glx";
+#    fade = true;
+#    fadeDelta = 5;
+    opacityRules = [ 
+      "75:class_g = 'URxvt' && focused"
+      "60:class_g = 'URxvt' && !focused" 
+    ];
+    shadow = true;
+    shadowOpacity = 0.75;
+  };
 
   location.provider = "manual";
   location.latitude = 51.4545;

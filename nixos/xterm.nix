@@ -8,7 +8,7 @@
         XTerm*utf8:                 2
         URxvt.iconFile:             /usr/share/icons/elementary/apps/24/terminal.svg
         URxvt.letterSpace:          0
-        URxvt.background:           #121214
+        URxvt.background:           #121212
         URxvt.foreground:           #FFFFFF
         XTerm*background:           #121212
         XTerm*foreground:           #FFFFFF
@@ -68,6 +68,7 @@
         URxvt*scrollWithBuffer:     false
         URxvt*scrollstyle:          plain
         URxvt*secondaryScroll:      true
+        URxvt*depth:                32
         Xft.autohint: 0
         Xft.lcdfilter:  lcddefault
         Xft.hintstyle:  hintfull

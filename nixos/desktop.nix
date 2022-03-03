@@ -7,6 +7,11 @@
     networking.wireless.enable = false;
     networking.interfaces.enp4s0.useDHCP = true;
 
+    systemd.targets.sleep.enable = false;
+    systemd.targets.suspend.enable = false;
+    systemd.targets.hibernate.enable = false;
+    systemd.targets.hybrid-sleep.enable = false;
+
     services.xserver.dpi = 180;
     services.xserver.layout = "gb";
     services.xserver.xrandrHeads = [

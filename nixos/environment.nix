@@ -22,6 +22,7 @@
       vscodium
       xclip
       xorg.xmodmap
+      feh
       dig
       kubectl
       haskellPackages.xmobar
@@ -36,6 +37,7 @@
             
       # :thinking_face:
       minecraft
+      osu-lazer
     ];
   };
 }
