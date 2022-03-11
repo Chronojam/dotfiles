@@ -17,6 +17,11 @@ for f in $(find $HOME/.dotfiles/nixos -type f); do
       sudo ln -s -f $f /etc/nixos/$FNAME
 done
 
+# Ask what machine configuration we want to use?
+read -p "environment? {desktop,dell,thinkpad}" environment
+# Dont validate, because we know exactly what we are doing
+sudo ln -s -f $HOME/.dotfiles/nixos/$environment.nix /etc/nixos/environment.nix
+
 # Setup .ssh config
 ln -s -f $HOME/.dotfiles/ssh $HOME/.ssh
 

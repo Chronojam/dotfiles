@@ -9,40 +9,26 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
 
-      # Include home desktop configuration
+      # Include machine-specific configuration
       ./miya68.nix
-      ./desktop.nix
+      /etc/nixos/environment.nix
 
       # Terminal Configurations
       ./xterm.nix
 
       # General environment configurations
-      ./environment.nix
+      ./common.nix
     ];
-
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.copyKernels = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.fsIdentifier = "label";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.devices = [ "nodev" ]; # or "nodev" for efi only
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.extraEntries = ''
-    menuentry "Reboot" {
-      reboot
-    }
-    menuentry "Poweroff" {
-      halt
-    }
-  '';
-  boot.loader.systemd-boot.enable = true;
 
   time.timeZone = "Europe/London";
   nixpkgs.config = {
     allowUnfree = true;
   };
+  #nix.gc.automatic = true;
+  #nix.autoOptimiseStore = true;
+  # Enable docker daemon for development
+  virtualisation.docker.enable = true;
+
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -88,57 +74,30 @@
     };
   };
 
-# Uncomment for printing
-
-#  services.printing.enable = false;
-#  services.printing.browsing = true;
-#  services.printing.extraConf = ''
-#    DefaultEncryption Never
-#    LogLevel debug
-#  '';
-#  services.printing.browsedConf = ''
-#    BrowseDNSSDSubTypes _cups,_print
-#    BrowseLocalProtocols all
-#    BrowseRemoteProtocols all
-#    CreateIPPPrinterQueues All
-#
-#    BrowseProtocols all
-#  '';
-#  services.printing.drivers = with pkgs;[ cnijfilter2 canon-cups-ufr2 cups-filters ];
-
-#  services.avahi = {
-#    enable = true;
-#    nssmdns = true;
-#  };
-#
   services.picom = {
     enable = true;
-    activeOpacity = 0.8;
+    activeOpacity = 1.0;
     inactiveOpacity = 0.7;
     backend = "glx";
-#    fade = true;
-#    fadeDelta = 5;
     opacityRules = [ 
       "75:class_g = 'URxvt' && focused"
       "60:class_g = 'URxvt' && !focused" 
     ];
-    shadow = true;
+    shadow = false;
     shadowOpacity = 0.75;
   };
 
   location.provider = "manual";
   location.latitude = 51.4545;
   location.longitude = 2.5879;
+
   services.redshift = {
     enable = true;
 
     temperature.day = 3500;
     # 2700
-    temperature.night = 1700;
+    temperature.night = 3500;
   };
-
-  # Configure keymap in X11
-  # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -159,10 +118,10 @@
       group = "users";
       home = "/home/calliope";
       hashedPassword = "$6$iirq/GpNr6IBdewB$2NzMW1w95yGB3.F11fHhe66ZMug7oYs.vMMlj69FD6RY2VjLbGiyxfotFxj2vQZHW9955unpsPuvz.OSUCgsl0";
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ and docker
     };
   };
-  
+
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;

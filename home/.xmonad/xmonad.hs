@@ -9,8 +9,6 @@ import XMonad.Layout.Spacing
 
 import System.IO
 
-
-
 -- layouts
 myLayout = tiled ||| Mirror tiled ||| Full
   where
