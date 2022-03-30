@@ -36,30 +36,37 @@
     powerManagement.enable = false;
     services.xserver.dpi = 180;
     services.xserver.layout = "gb";
+    # Nvidia HW drivers.
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.opengl.enable = true;
+    hardware.nvidia.powerManagement.enable = true;
+    services.xserver.screenSection = ''
+      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+      Option         "AllowIndirectGLXProtocol" "off"
+      Option         "TripleBuffer" "on"
+    '';
+
     services.xserver.resolutions = [
-      { x = "2560"; y = "1600"; }
+      { x = "3840"; y = "2160"; }
     ];
-    services.xserver.xrandrHeads = [
-      {
-        output = "DP-2";
-        primary = true;
-      }
-      {
-        output = "HDMI-1";
-        monitorConfig = ''
-          Option "RightOf" "DP-2"
-        '';
-      }
-    ];
+    services.xserver.displayManager.setupCommands = ''
+    ${pkgs.xlibs.xrandr}/bin/xrandr --output DP-0 --off --output DP-1 --off --output DP-2 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-3 --off --output HDMI-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-4 --off --output DP-5 --off 
+    '';
 
     environment = {
       # Desktop specific packages.
       systemPackages = with pkgs; [
         discord
         audacity
+        gnucash
+        airshipper
 
         # :thinking_face
         minecraft
+        (wineWowPackages.full.override {
+          wineRelease = "staging";
+          mingwSupport = true;
+        })
       ];
     };
 }

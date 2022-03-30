@@ -24,6 +24,12 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
   #nix.gc.automatic = true;
   #nix.autoOptimiseStore = true;
   # Enable docker daemon for development
@@ -85,6 +91,7 @@
     ];
     shadow = false;
     shadowOpacity = 0.75;
+    vSync = true;
   };
 
   location.provider = "manual";

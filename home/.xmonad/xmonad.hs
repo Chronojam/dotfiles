@@ -24,7 +24,7 @@ main = do
     xmonad $ defaultConfig
       { modMask = mod4Mask
       , manageHook = manageDocks <+> manageHook defaultConfig
-      , layoutHook = avoidStruts myLayout
+      , layoutHook = avoidStruts $ myLayout
       , handleEventHook = handleEventHook defaultConfig <+> docksEventHook
       , logHook = dynamicLogWithPP xmobarPP
           { ppOutput = hPutStrLn xmproc
